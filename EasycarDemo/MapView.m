@@ -173,11 +173,12 @@
     if (!_userLocationAnnotation) {
         _userLocationAnnotation = [[MyAnnotation alloc] init];
         _userLocationAnnotation.type = CarTypeNone;
-        //转火星坐标
-        CLLocationCoordinate2D currentLocation = [WGS84TOGCJ02 transformFromWGSToGCJ:self.locationManager.location.coordinate];
-        _userLocationAnnotation.coordinate = currentLocation;
+       
         _userLocationAnnotation.title = @"我的位置";
     }
+    //转火星坐标   防止重复定位
+    CLLocationCoordinate2D currentLocation = [WGS84TOGCJ02 transformFromWGSToGCJ:self.locationManager.location.coordinate];
+    _userLocationAnnotation.coordinate = currentLocation;
     return _userLocationAnnotation;
 }
 //加载地图相关信息
